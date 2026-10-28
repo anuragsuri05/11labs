@@ -1,0 +1,17 @@
+# Used automatically by `npm start` on machines without native PyTorch support (Intel Macs).
+name: nolabs
+services:
+  engine:
+    build: ./backend
+    image: nolabs-backend
+    environment:
+      - DEVICE=${DEVICE:-auto}
+      - TORCH_THREADS=${TORCH_THREADS:-8}
+    volumes:
+      - ./data:/data             # voices, history, generated audio
+      - ./models:/models         # model weights (~6 GB, downloaded on first use)
+      - ./backend/app:/srv/app   # live code
+      - ./frontend/dist:/web     # built UI
+    ports:
+      - "${PORT:-3333}:8000"
+    command: sh -c "uvicorn app.main:app --host 0.0.0.0 --port 8000 ${UVICORN_FLAGS:-}"

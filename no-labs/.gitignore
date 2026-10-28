@@ -1,0 +1,9 @@
+node_modules/
+frontend/dist/
+data/
+models/
+backend/.venv/
+.nolabs-setup
+__pycache__/
+test-results/
+playwright-report/

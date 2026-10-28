@@ -1,0 +1,32 @@
+{
+  "name": "nolabs",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Free, open-source, self-hosted voice AI studio (text to speech, voice cloning, speech to text, sound effects, music).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "workspaces": [
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "postinstall": "node scripts/nolabs.mjs setup",
+    "setup": "node scripts/nolabs.mjs setup",
+    "start": "node scripts/nolabs.mjs start",
+    "dev": "node scripts/nolabs.mjs dev",
+    "stop": "node scripts/nolabs.mjs stop",
+    "build": "npm run build --workspace frontend",
+    "test:ui": "playwright test",
+    "test": "npm run test:api && npm run build",
+    "test:api": "node scripts/nolabs.mjs test",
+    "test:e2e": "node scripts/e2e.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0"
+  }
+}
